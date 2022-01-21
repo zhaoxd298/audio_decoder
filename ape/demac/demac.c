@@ -86,7 +86,12 @@ struct ape_lib
 	unsigned int *pcm_right_ch;
 	unsigned int pcm_samples;
 
+	int first_byte;
+
 	enum ape_decode_state_e state;
+	int total_skip_size;
+	int seek_table_offset;
+	int eos;
 } g_ape_lib;
 
 static int ape_decode_init(struct ape_lib *ape_lib)
@@ -135,7 +140,12 @@ static int ape_decode_init(struct ape_lib *ape_lib)
 	ape_lib->es_data_size = 0;
 	ape_lib->ape_ctx.cur_frame = 0;
 
+	ape_lib->first_byte = 3;
+
 	ape_lib->state = APE_STATE_PARSE_HEADER;
+	ape_lib->total_skip_size = 0;
+	ape_lib->seek_table_offset = 0;
+	ape_lib->eos = 0;
 
 	return 0;
 
@@ -203,7 +213,7 @@ static int ape_decode_release(struct ape_lib *ape_lib)
 
 int ape_decode(struct ape_lib *ape_lib, unsigned char *buf, int *size)
 {
-	static int firstbyte = 3, nblocks, frm_size;
+	static int nblocks, frm_size;
 	int used, i, ret;
 	struct ape_ctx_t *ape_ctx = NULL;
 
@@ -252,7 +262,7 @@ int ape_decode(struct ape_lib *ape_lib, unsigned char *buf, int *size)
 
 		used = 0;
 		/* Initialise the frame decoder */
-		init_frame_decoder(ape_ctx, buf, &firstbyte, &used);
+		init_frame_decoder(ape_ctx, buf, &ape_lib->first_byte, &used);
 		//printf("frm:%d used0:%d firstbyte:%d\n", currentframe, bytesconsumed, firstbyte);
 
 		if (*size < used)
@@ -283,7 +293,7 @@ int ape_decode(struct ape_lib *ape_lib, unsigned char *buf, int *size)
 	}
 	/* Decode the frame a chunk at a time */
 	int sub_blocks = MIN(BLOCKS_PER_LOOP, nblocks);
-	ret = decode_chunk(ape_ctx, buf, &firstbyte, &used, ape_lib->decoded0, ape_lib->decoded1, sub_blocks);
+	ret = decode_chunk(ape_ctx, buf, &ape_lib->first_byte, &used, ape_lib->decoded0, ape_lib->decoded1, sub_blocks);
 	if (ret < 0)
 	{
 		/* Frame decoding error, abort */
@@ -369,8 +379,7 @@ static int ape_input_data(struct ape_lib *ape_lib, char *buf, int size)
 
 int main(int argc, char* argv[])
 {
-	int fin, fout, ret, read_over = 0, offset = 0;
-	static int total_skip_size = 0;
+	int fin, fout, ret, read_over = 0;
 	struct ape_lib *ape_lib = &g_ape_lib;
 
 	int data_size = 0;
@@ -431,7 +440,7 @@ int main(int argc, char* argv[])
 			ret = ape_parseheaderbuf(&ape_lib->ape_ctx, ape_lib->es_buf, ape_lib->es_data_size);
 			if (ret >= 0)
 			{
-				offset = ret;
+				ape_lib->seek_table_offset = ret;
 				
 				ape_lib->state = APE_STATE_PARSE_SEEK_TABLE;
 			}
@@ -439,7 +448,7 @@ int main(int argc, char* argv[])
 
 		if (APE_STATE_PARSE_SEEK_TABLE == ape_lib->state)	//parse seek table
 		{
-			ret = ape_parse_seek_table(&ape_lib->ape_ctx, ape_lib->es_buf, ape_lib->es_data_size, offset);
+			ret = ape_parse_seek_table(&ape_lib->ape_ctx, ape_lib->es_buf, ape_lib->es_data_size, ape_lib->seek_table_offset);
 			if (0 == ret)
 			{
 				//ape_dumpinfo(&ape_lib->ape_ctx);
@@ -451,17 +460,17 @@ int main(int argc, char* argv[])
 
 		if (APE_STATE_SEEK_TO_FIRST_FRAME == ape_lib->state)	// seek to first frame
 		{
-			if (ape_lib->ape_ctx.firstframe > total_skip_size)
+			if (ape_lib->ape_ctx.firstframe > ape_lib->total_skip_size)
 			{
-				int skip = ape_lib->ape_ctx.firstframe - total_skip_size;
+				int skip = ape_lib->ape_ctx.firstframe - ape_lib->total_skip_size;
 				if (skip > ape_lib->es_data_size)
 				{
-					total_skip_size += ape_lib->es_data_size;
+					ape_lib->total_skip_size += ape_lib->es_data_size;
 					ape_lib->es_data_size = 0;
 				}
 				else
 				{
-					total_skip_size += skip;
+					ape_lib->total_skip_size += skip;
 					memmove(ape_lib->es_buf, ape_lib->es_buf+skip, ape_lib->es_data_size - skip);
 					ape_lib->es_data_size = ape_lib->es_data_size-skip;
 				}
@@ -488,6 +497,7 @@ int main(int argc, char* argv[])
 		if (ape_lib->ape_ctx.cur_frame == ape_lib->ape_ctx.totalframes)
 		{
 			printf("decode success, %d samples!\n", ape_lib->ape_ctx.totalframes);
+			ape_lib->eos = 1;
 			break;
 		}
 	}
