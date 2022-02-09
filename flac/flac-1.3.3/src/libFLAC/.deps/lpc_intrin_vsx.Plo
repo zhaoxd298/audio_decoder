@@ -1,0 +1,6 @@
+lpc_intrin_vsx.lo: lpc_intrin_vsx.c /usr/include/stdc-predef.h \
+ ../../config.h
+
+/usr/include/stdc-predef.h:
+
+../../config.h:

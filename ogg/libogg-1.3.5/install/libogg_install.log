@@ -1,0 +1,81 @@
+Making install in src
+make[1]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/src'
+make[2]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/src'
+ /usr/bin/mkdir -p '/mnt/d/audio_decoder/libogg-1.3.5/install/lib'
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c   libogg.la '/mnt/d/audio_decoder/libogg-1.3.5/install/lib'
+libtool: install: /usr/bin/install -c .libs/libogg.so.0.8.5 /mnt/d/audio_decoder/libogg-1.3.5/install/lib/libogg.so.0.8.5
+libtool: install: (cd /mnt/d/audio_decoder/libogg-1.3.5/install/lib && { ln -s -f libogg.so.0.8.5 libogg.so.0 || { rm -f libogg.so.0 && ln -s libogg.so.0.8.5 libogg.so.0; }; })
+libtool: install: (cd /mnt/d/audio_decoder/libogg-1.3.5/install/lib && { ln -s -f libogg.so.0.8.5 libogg.so || { rm -f libogg.so && ln -s libogg.so.0.8.5 libogg.so; }; })
+libtool: install: /usr/bin/install -c .libs/libogg.lai /mnt/d/audio_decoder/libogg-1.3.5/install/lib/libogg.la
+libtool: install: /usr/bin/install -c .libs/libogg.a /mnt/d/audio_decoder/libogg-1.3.5/install/lib/libogg.a
+libtool: install: chmod 644 /mnt/d/audio_decoder/libogg-1.3.5/install/lib/libogg.a
+libtool: install: ranlib /mnt/d/audio_decoder/libogg-1.3.5/install/lib/libogg.a
+libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/d/software/cmder_mini/vendor/bin:/mnt/d/software/cmder_mini/vendor/conemu-maximus5/ConEmu/Scripts:/mnt/d/software/cmder_mini/vendor/conemu-maximus5:/mnt/d/software/cmder_mini/vendor/conemu-maximus5/ConEmu:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/TortoiseHg/:/mnt/c/Program Files (x86)/Montage-tech/MontageDebugger/bin:/mnt/c/Program Files (x86)/Montage-tech/Brolga/codeblocks:/mnt/c/Program Files (x86)/Microsoft SQL Server/90/Tools/binn/:/mnt/c/Users/ahzhao/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files (x86)/Montage-tech/Brolga/codeblocks/:/mnt/c/Program Files (x86)/Montage-tech/Brolga/msys/1.0/local/:/mnt/d/software/cmder_mini:/snap/bin:/sbin" ldconfig -n /mnt/d/audio_decoder/libogg-1.3.5/install/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /mnt/d/audio_decoder/libogg-1.3.5/install/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/src'
+make[1]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/src'
+Making install in include
+make[1]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/include'
+Making install in ogg
+make[2]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/include/ogg'
+make[3]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/include/ogg'
+make[3]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/mnt/d/audio_decoder/libogg-1.3.5/install/include/ogg'
+ /usr/bin/install -c -m 644 config_types.h '/mnt/d/audio_decoder/libogg-1.3.5/install/include/ogg'
+ /usr/bin/mkdir -p '/mnt/d/audio_decoder/libogg-1.3.5/install/include/ogg'
+ /usr/bin/install -c -m 644 ogg.h os_types.h '/mnt/d/audio_decoder/libogg-1.3.5/install/include/ogg'
+make[3]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/include/ogg'
+make[2]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/include/ogg'
+make[2]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/include'
+make[3]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/include'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/include'
+make[2]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/include'
+make[1]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/include'
+Making install in doc
+make[1]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/doc'
+Making install in libogg
+make[2]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/doc/libogg'
+make[3]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/doc/libogg'
+make[3]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/mnt/d/audio_decoder/libogg-1.3.5/install/share/doc/libogg/libogg'
+ /usr/bin/install -c -m 644 bitpacking.html datastructures.html decoding.html encoding.html general.html index.html ogg_iovec_t.html ogg_packet.html ogg_packet_clear.html ogg_page.html ogg_page_bos.html ogg_page_checksum_set.html ogg_page_continued.html ogg_page_eos.html ogg_page_granulepos.html ogg_page_packets.html ogg_page_pageno.html ogg_page_serialno.html ogg_page_version.html ogg_stream_check.html ogg_stream_clear.html ogg_stream_destroy.html ogg_stream_eos.html ogg_stream_flush.html ogg_stream_flush_fill.html ogg_stream_init.html ogg_stream_iovecin.html ogg_stream_packetin.html ogg_stream_packetout.html ogg_stream_packetpeek.html ogg_stream_pagein.html ogg_stream_pageout.html ogg_stream_pageout_fill.html ogg_stream_reset.html ogg_stream_reset_serialno.html ogg_stream_state.html ogg_sync_buffer.html ogg_sync_check.html ogg_sync_clear.html ogg_sync_destroy.html '/mnt/d/audio_decoder/libogg-1.3.5/install/share/doc/libogg/libogg'
+ /usr/bin/install -c -m 644 ogg_sync_init.html ogg_sync_pageout.html ogg_sync_pageseek.html ogg_sync_reset.html ogg_sync_state.html ogg_sync_wrote.html oggpack_adv.html oggpack_adv1.html oggpack_bits.html oggpack_buffer.html oggpack_bytes.html oggpack_get_buffer.html oggpack_look.html oggpack_look1.html oggpack_read.html oggpack_read1.html oggpack_readinit.html oggpack_reset.html oggpack_write.html oggpack_writealign.html oggpack_writecheck.html oggpack_writeclear.html oggpack_writecopy.html oggpack_writeinit.html oggpack_writetrunc.html overview.html reference.html style.css '/mnt/d/audio_decoder/libogg-1.3.5/install/share/doc/libogg/libogg'
+make[3]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/doc/libogg'
+make[2]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/doc/libogg'
+make[2]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/doc'
+make[3]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5/doc'
+make[3]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/mnt/d/audio_decoder/libogg-1.3.5/install/share/doc/libogg'
+ /usr/bin/install -c -m 644 framing.html index.html oggstream.html ogg-multiplex.html fish_xiph_org.png multiplex1.png packets.png pages.png stream.png vorbisword2.png white-ogg.png white-xifish.png rfc3533.txt rfc5334.txt skeleton.html '/mnt/d/audio_decoder/libogg-1.3.5/install/share/doc/libogg'
+make[3]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/doc'
+make[2]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/doc'
+make[1]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5/doc'
+make[1]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5'
+make[2]: Entering directory '/mnt/d/audio_decoder/libogg-1.3.5'
+make[2]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/mnt/d/audio_decoder/libogg-1.3.5/install/share/aclocal'
+ /usr/bin/install -c -m 644 ogg.m4 '/mnt/d/audio_decoder/libogg-1.3.5/install/share/aclocal'
+ /usr/bin/mkdir -p '/mnt/d/audio_decoder/libogg-1.3.5/install/lib/pkgconfig'
+ /usr/bin/install -c -m 644 ogg.pc '/mnt/d/audio_decoder/libogg-1.3.5/install/lib/pkgconfig'
+make[2]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5'
+make[1]: Leaving directory '/mnt/d/audio_decoder/libogg-1.3.5'
