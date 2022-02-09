@@ -1,0 +1,14 @@
+# opusfile uninstalled pkg-config file
+
+prefix=
+exec_prefix=
+libdir=${pcfiledir}/.libs
+includedir=${pcfiledir}/./include
+
+Name: opusfile uninstalled
+Description: High-level Opus decoding library (not installed)
+Version: unknown
+Requires.private: ogg >= 1.3 opus >= 1.0.1
+Conflicts:
+Libs: ${libdir}/libopusfile.la -lm
+Cflags: -I${includedir}

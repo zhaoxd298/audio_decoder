@@ -1,0 +1,14 @@
+# opusurl uninstalled pkg-config file
+
+prefix=
+exec_prefix=
+libdir=${pcfiledir}/.libs
+includedir=${pcfiledir}/./include
+
+Name: opusfile uninstalled
+Description: High-level Opus decoding library, URL support (not installed)
+Version: unknown
+Requires: opusfile
+Requires.private: openssl
+Conflicts:
+Libs: ${libdir}/libopusurl.la
