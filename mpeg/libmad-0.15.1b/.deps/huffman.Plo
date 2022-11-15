@@ -1,0 +1,10 @@
+huffman.lo: huffman.c /usr/include/stdc-predef.h config.h global.h \
+ huffman.h
+
+/usr/include/stdc-predef.h:
+
+config.h:
+
+global.h:
+
+huffman.h:

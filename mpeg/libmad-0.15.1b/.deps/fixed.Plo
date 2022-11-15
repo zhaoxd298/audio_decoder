@@ -1,0 +1,9 @@
+fixed.lo: fixed.c /usr/include/stdc-predef.h config.h global.h fixed.h
+
+/usr/include/stdc-predef.h:
+
+config.h:
+
+global.h:
+
+fixed.h:
