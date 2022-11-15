@@ -1,6 +1,7 @@
 常见音频格式开源解码库汇总
 
 无损压缩:
+
 FLAC
 主页： https://xiph.org/flac/
 下载： https://xiph.org/flac/download.html
@@ -24,6 +25,7 @@ WavPack
 
 
 有损压缩:
+
 AAC
 名称：faad2
 主页： http://www.audiocoding.com/
