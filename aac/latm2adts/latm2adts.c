@@ -26,6 +26,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "get_bits.h"
+#include "put_bits.h"
 
 
 static const int8_t tags_per_config[16] = { 0, 1, 1, 2, 3, 3, 4, 5, 0, 0, 0, 5, 5, 16, 5, 0 };
@@ -944,7 +945,7 @@ static int read_audio_mux_element(struct LATMContext *latmctx, GetBitContext *gb
 	if (latmctx->audio_mux_version_A == 0)
 	{
 		//printf("num_sub_frames:%d\n", latmctx->num_sub_frames);
-		for (i = 0; i < latmctx->num_sub_frames; i++)
+		for (i = 0; i <= latmctx->num_sub_frames; i++)
 		{
 			int mux_slot_length_bytes = read_payload_length_info(latmctx, gb);
 			//printf("mux_slot_length_bytes:%d\n", mux_slot_length_bytes);
@@ -953,12 +954,6 @@ static int read_audio_mux_element(struct LATMContext *latmctx, GetBitContext *gb
 				printf("incomplete frame\n");
 				return -1;
 			}
-			/*else if (mux_slot_length_bytes * 8 + 256 < get_bits_left(gb))
-			{
-				printf("frame length mismatch %d << %d\n",
-				       mux_slot_length_bytes * 8, get_bits_left(gb));
-				return -1;
-			}*/
 
 			if (mux_slot_length_bytes > (*adts_size - total_size))
 			{
@@ -1259,7 +1254,7 @@ int main(int argc, char *argv[])
 		memmove(buf, buf + latm_frm_len, data_left);
 		if ((adts_frm_len <= 0))
 		{
-			printf("parse latm error![0x%p/%d]\n", adts_buf, adts_frm_len);
+			printf("parse latm error![%d]\n", adts_frm_len);
 			continue;
 		}
 
